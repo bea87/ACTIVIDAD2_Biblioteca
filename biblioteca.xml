@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE biblioteca SYSTEM "biblioteca.dtd">
+<biblioteca>
+ 
+    <libro id="L1783" tipo_clase="infantil" paginas="332">
+        <titulo_libro>Dumbo</titulo_libro>
+        <capitulo_libro paginas="12">
+            <contenido_libro enlace="capitulo1.txt"></contenido_libro>
+        </capitulo_libro>
+        <capitulo_libro paginas="200">
+            <contenido_libro enlace="capitulo2.txt"></contenido_libro>
+        </capitulo_libro>
+        <capitulo_libro paginas="8">
+            <contenido_libro enlace="capitulo3.txt"></contenido_libro>
+        </capitulo_libro>
+        <indice_libro>kjasfkjdsh</indice_libro>
+        <sinopsis_libro>alskjdfjsdflkgj</sinopsis_libro>
+    </libro>    
+
+
+    <revista id="R" tipo_clase="investigacion" paginas="245"> 
+        <titulo_revista>Laboratorio de ideas</titulo_revista>
+        <numero_revista>1527</numero_revista>
+        <indice_revista>jtwjtrasjdk</indice_revista>
+        <secciones_revista paginas="13">
+            <contenido_revista enlace="seccion1.txt"></contenido_revista>
+        </secciones_revista>
+        <secciones_revista paginas="23">
+            <contenido_revista enlace="seccion2.txt"></contenido_revista>
+        </secciones_revista>
+        <secciones_revista paginas="41">
+            <contenido_revista enlace="seccion3.txt"></contenido_revista>
+        </secciones_revista>
+    </revista>
+
+    <periodico id="P2021" tipo_clase="nacional" fecha="14/05/21">
+        <secciones_periodico tipo_seccion="opinion">
+            <articulo_periodico autor="Bea">
+                <contenido_articulo enlace="blabla1.html"></contenido_articulo>
+            </articulo_periodico>
+            <articulo_periodico autor="Beaaa">
+                <contenido_articulo enlace="blabla11.html"></contenido_articulo>
+            </articulo_periodico>
+        </secciones_periodico>
+        <secciones_periodico tipo_seccion="deportes">
+            <articulo_periodico autor="rao">
+                <contenido_articulo enlace="blabla2.html"></contenido_articulo>
+            </articulo_periodico>
+            <articulo_periodico autor="Beasda">
+                <contenido_articulo enlace="blabla1223.html"></contenido_articulo>
+            </articulo_periodico>
+        </secciones_periodico>
+        <indice_periodico>1234edg</indice_periodico>
+    </periodico>
+
+
+</biblioteca>

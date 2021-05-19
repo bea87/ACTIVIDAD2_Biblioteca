@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+<!-- elemento raiz: biblioteca -->
+<xs:element name="biblioteca">
+    <xs:complexType>
+        <xs:all>
+            <xs:element name="libro" type="tipoLibro" minOccurs="0" />
+            <xs:element name="revista" type="tipoRevista" minOccurs="0" />
+            <xs:element name="periodico" type="tipoPeriodico" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+</xs:element>
+
+<!-- Definicion del tipo tipoLibro -->
+<xs:complexType name="tipoLibro">
+    <xs:sequence>
+        <xs:element name="titulo_libro" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="capitulo_libro" type="tipoCapituloLibro" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element name="indice_libro" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="sinopsis_libro" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="atributoIDtipo" use="required"/>
+    <xs:attribute name="tipo_clase" type="atributoTipoClase" use="required"/>
+    <xs:attribute name="paginas" type="xs:nonNegativeInteger" use="required"/>
+</xs:complexType>
+
+<!-- definir posibles valores del atributo tipo_clase -->
+<xs:simpleType name="atributoTipoClase">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="novela" />
+        <xs:enumeration value="infantil" />
+        <xs:enumeration value="didactico" />
+    </xs:restriction>
+</xs:simpleType>
+
+<!-- definir el elemento capitulo_libro -->
+<xs:complexType name="tipoCapituloLibro">
+    <xs:sequence>
+        <xs:element name="contenido_libro" type="tipoContenidoLibro" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attribute name="paginas" type="xs:nonNegativeInteger" use="required"/>
+</xs:complexType>
+<xs:complexType name="tipoContenidoLibro">
+    <xs:attribute name="enlace" type="xs:string" use="required"/>
+</xs:complexType>
+
+<!-- definir atributo ID de libro -->
+<xs:simpleType name="atributoIDtipo">
+    <xs:restriction base="xs:ID">
+        <xs:pattern value="[L]{1}[0-9]{4}"/>
+    </xs:restriction>
+</xs:simpleType>
+
+
+<!-- definir tipoRevista -->
+<xs:complexType name="tipoRevista">
+    <xs:sequence>
+        <xs:element name="titulo_revista" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="numero_revista" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="indice_revista" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="secciones_revista" type="tipoSeccionesRevista" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="tipoIDrevista" use="required"/>
+    <xs:attribute name="tipo_clase" type="tipoClaseAtributoRevista" use="required"/>
+    <xs:attribute name="paginas" type="xs:nonNegativeInteger" use="required"/>
+</xs:complexType>
+
+<!-- definir atributo ID de revista -->
+<xs:simpleType name="tipoIDrevista">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="[R]{1}"></xs:pattern>
+    </xs:restriction>
+</xs:simpleType>
+
+<!-- definir posibles valores del atributo tipo_clase -->
+<xs:simpleType name="tipoClaseAtributoRevista">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="informatica" />
+        <xs:enumeration value="corazon" />
+        <xs:enumeration value="coches" />
+        <xs:enumeration value="investigacion" />
+        <xs:enumeration value="otras" />
+    </xs:restriction>
+</xs:simpleType>
+
+<!-- definir tipo secciones revista -->
+<xs:complexType name="tipoSeccionesRevista">
+    <xs:sequence>
+        <xs:element name="contenido_revista" type="tipoContenidoRevista" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attribute name="paginas" type="xs:nonNegativeInteger" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="tipoContenidoRevista">
+    <xs:attribute name="enlace" type="xs:string" use="required"/>
+</xs:complexType>
+
+<!-- definir tipoPeriodico-->
+<xs:complexType name="tipoPeriodico">
+    <xs:sequence>
+        <xs:element name="secciones_periodico" type="tipoSeccionesPeriodico" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element name="indice_periodico" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="tipoIDperiodico" use="required"/>
+    <xs:attribute name="tipo_clase" type="tipoClaseAtributoPeriodico" use="required"/>
+    <xs:attribute name="fecha" type="xs:date" use="required"/>
+</xs:complexType>
+
+<!-- definir atributo ID de periodico -->
+<xs:simpleType name="tipoIDperiodico">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="[P]{1[0-9]{4}"></xs:pattern>
+    </xs:restriction>
+</xs:simpleType>
+
+<!-- definir posibles valores del atributo tipo_clase -->
+<xs:simpleType name="tipoClaseAtributoPeriodico">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="nacional" />
+        <xs:enumeration value="internacional" />
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="tipoSeccionesPeriodico">
+    <xs:sequence>
+        <xs:element name="articulo_periodico" type="tipoArticulo" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="tipo_seccion" type="tipoAtributoSecciones" use="required"/>
+</xs:complexType>
+
+<xs:simpleType name="tipoAtributoSecciones">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="nacional" />
+        <xs:enumeration value="internacional" />
+        <xs:enumeration value="economica" />
+        <xs:enumeration value="opinion" />
+        <xs:enumeration value="deportes" />
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="tipoArticulo">
+    <xs:sequence>
+        <xs:element name="contenido_articulo" type="tipoContenido" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attribute name="autor" type="xs:string" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="tipoContenido">
+    <xs:attribute name="enlace" type="xs:string" use="required"/>
+</xs:complexType>
+
+
+
+</xs:schema>
